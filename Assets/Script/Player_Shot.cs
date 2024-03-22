@@ -21,30 +21,30 @@ public class Player_Shot : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitData))
             {
-                if(hitData.transform.name == "Start") 
+                if(hitData.transform.name == "Start_Button") 
                 {
-                    if(hitData.transform.GetComponent<Spawn_Sphere>().isSpawnStart)
+                    if(hitData.transform.GetComponent<Spawn_Sphere>().isReady)//종료함
                     {
+                        hitData.transform.GetComponent<Spawn_Sphere>().isReady = false;
                         hitData.transform.GetComponent<Spawn_Sphere>().isSpawnStart = false;
+
                         hitData.transform.GetComponent<Renderer>().material.color = Color.green;
                     }
-                    else
+                    else//시작함
                     {
-                        hitData.transform.GetComponent<Spawn_Sphere>().isSpawnStart = true;
+                        hitData.transform.GetComponent<Spawn_Sphere>().isReady = true;
+
                         hitData.transform.GetComponent<Renderer>().material.color = Color.red;
 
                     }
                 }
 
-                if(hitData.transform.tag == "Target")
+                if(hitData.transform.name.Contains("Sphere"))
                 {
                     Destroy(hitData.transform.gameObject);
+                    Spawn_Sphere.count_Score++;
                 }
-                else
-                {
-
-                }
-                Debug.Log(hitData.transform.name);
+    
             }
         }
 
