@@ -3,7 +3,22 @@ guid: 2ef06c293d28ff44882aeaf920952788
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cylinder
+    second: {fileID: 2100000, guid: 0418ad30510a8234abd53a6d53371760, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GunBTM
+    second: {fileID: 2100000, guid: c7897ec970a9661499c993eb7468a4b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GunTop
+    second: {fileID: 2100000, guid: 815f110fb66cb4142a8c76628d399108, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -15,7 +30,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
-    motionNodeName: 
+    motionNodeName: Pistol_Hand
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -24,7 +39,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -57,8 +72,30 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Pistol_Hand
+        weight: 1
+      - path: Pistol_Hand/Cylinder
+        weight: 1
+      - path: Pistol_Hand/Cylinder/Cylinder
+        weight: 1
+      - path: Pistol_Hand/gumbt
+        weight: 1
+      - path: Pistol_Hand/PistolTop
+        weight: 1
+      - path: Pistol_Hand/PistolTop/GunTop
+        weight: 1
+      - path: Pistol_Hand/Reload
+        weight: 1
+      - path: Pistol_Hand/Reload/reload
+        weight: 1
+      - path: Pistol_Hand/Trigger
+        weight: 1
+      - path: Pistol_Hand/Trigger/trigger
+        weight: 1
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     isReadable: 0
@@ -120,7 +157,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Pistol_Hand
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -128,7 +165,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
