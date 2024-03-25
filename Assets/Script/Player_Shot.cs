@@ -1,21 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Player_Shot : MonoBehaviour
 {
+    public Image hit_Image;
+    public Text textbulletCount;
+    public ParticleSystem gunFire;
+
+    int curBulletCount;
+    int maxBulletCount;
+
     void Start()
     {
-        
+        maxBulletCount = 6;
+        curBulletCount = maxBulletCount;
+
     }
 
     void Update()
     {
         Debug.DrawRay(transform.position, transform.forward* 100, Color.red);
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && curBulletCount > 0)
         {
-            Debug.Log("마우스 클릭");
+            curBulletCount--;
+            textbulletCount.text = curBulletCount + " / " + maxBulletCount;
+            gunFire.Play();
+
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hitData;
 
@@ -39,6 +52,11 @@ public class Player_Shot : MonoBehaviour
                     }
                 }
 
+                if(hitData.transform.tag == "Target")
+                {
+                    hit_Image.color = new Color(1, 1, 1, 1);
+                }
+
                 if(hitData.transform.name.Contains("Sphere"))
                 {
                     Destroy(hitData.transform.gameObject);
@@ -48,7 +66,12 @@ public class Player_Shot : MonoBehaviour
             }
         }
 
-       
+       if(Input.GetKeyDown(KeyCode.R))
+        {
+            curBulletCount = maxBulletCount;
+            textbulletCount.text = curBulletCount + " / " + maxBulletCount;
+
+        }
     }
     /*
     void Fire()
