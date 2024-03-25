@@ -8,7 +8,10 @@ public class Player_Shot : MonoBehaviour
 {
     public Image hit_Image;
     public Text textbulletCount;
+
     public ParticleSystem gunFire;
+    public GameObject Gun;
+    Animator fire_anim;
 
     int curBulletCount;
     int maxBulletCount;
@@ -17,7 +20,7 @@ public class Player_Shot : MonoBehaviour
     {
         maxBulletCount = 6;
         curBulletCount = maxBulletCount;
-
+        fire_anim = Gun.GetComponent<Animator>();
     }
 
     void Update()
@@ -27,6 +30,7 @@ public class Player_Shot : MonoBehaviour
         {
             curBulletCount--;
             textbulletCount.text = curBulletCount + " / " + maxBulletCount;
+            fire_anim.SetTrigger("IsFire");
             gunFire.Play();
 
             Ray ray = new Ray(transform.position, transform.forward);
