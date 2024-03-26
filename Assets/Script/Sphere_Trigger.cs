@@ -5,9 +5,11 @@ using UnityEngine;
 public class Sphere_Trigger : MonoBehaviour
 {
     float destroyTime;
+
+    public float destroyLevel;
     void Start()
     {
-        destroyTime = 1.9f;
+        destroyTime = destroyLevel;
     }
 
     void Update()

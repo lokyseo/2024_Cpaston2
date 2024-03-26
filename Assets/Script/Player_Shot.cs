@@ -16,6 +16,10 @@ public class Player_Shot : MonoBehaviour
     int curBulletCount;
     int maxBulletCount;
 
+    public GameObject spawnSphere;
+    public GameObject sphere;
+
+
     void Start()
     {
         maxBulletCount = 6;
@@ -56,6 +60,32 @@ public class Player_Shot : MonoBehaviour
                     }
                 }
 
+                if(hitData.transform.tag == "LevelTrigger")
+                {
+                    hitData.transform.GetComponent<Renderer>().material.color = Color.black;
+
+                    switch (hitData.transform.name)
+                    {
+                        case "Easy":
+                            spawnSphere.GetComponent<Spawn_Sphere>().spawnLevel = 2.0f;
+                            sphere.GetComponent<Sphere_Trigger>().destroyLevel = 1.8f;
+                            break;
+
+                        case "Normal":
+                            spawnSphere.GetComponent<Spawn_Sphere>().spawnLevel = 1.5f;
+                            sphere.GetComponent<Sphere_Trigger>().destroyLevel = 1.3f;
+                            break;
+
+                        case "Difficult":
+                            spawnSphere.GetComponent<Spawn_Sphere>().spawnLevel = 1.2f;
+                            sphere.GetComponent<Sphere_Trigger>().destroyLevel = 1.0f;
+                            break;
+
+                    }
+
+
+                }
+
                 if(hitData.transform.tag == "Target")
                 {
                     hit_Image.color = new Color(1, 1, 1, 1);
@@ -64,7 +94,7 @@ public class Player_Shot : MonoBehaviour
                 if(hitData.transform.name.Contains("Sphere"))
                 {
                     Destroy(hitData.transform.gameObject);
-                    Spawn_Sphere.count_Score++;
+                    spawnSphere.GetComponent<Spawn_Sphere>().count_Score++;
                 }
     
             }
